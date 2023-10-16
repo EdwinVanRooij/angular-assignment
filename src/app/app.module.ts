@@ -15,6 +15,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 // shared module with these kinds of imports so that you can reuse them in other
 // modules.
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
@@ -25,6 +26,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     StoreModule.forRoot({ [StoreKeys.Client]: clientReducer }),
     EffectsModule.forRoot([ClientEffects]),
     MatSnackBarModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

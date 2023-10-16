@@ -1,10 +1,12 @@
 import { SnackbarService } from './../../services/snackbar.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription, filter, tap } from 'rxjs';
 import { Client } from 'src/app/models/client';
 import { ClientState } from 'src/app/state/client/client.reducers';
 import { selectClients } from 'src/app/state/client/client.selectors';
+import { CreateComponent } from '../create/create.component';
 
 @Component({
   selector: 'app-overview',
@@ -19,7 +21,8 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<ClientState>,
-    private snackbarService: SnackbarService
+    private snackbarService: SnackbarService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -48,5 +51,12 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
   onSelectClient(client: Client): void {
     this.selectedClient = client;
+  }
+
+  onClickPlus(): void {
+    const dialogRef = this.dialog.open(CreateComponent, {
+      width: '70%',
+      height: '70%',
+    });
   }
 }

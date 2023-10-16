@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Client } from 'src/app/models/client';
+import { CreateComponent } from '../create/create.component';
 
 @Component({
   selector: 'app-details',

@@ -14,6 +14,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [DetailsComponent, OverviewComponent, CreateComponent],
@@ -26,6 +28,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatDividerModule,
     MatToolbarModule,
     MatProgressBarModule,
+    MatDialogModule,
+    MatButtonModule,
   ],
 })
 export class ClientsModule {}
