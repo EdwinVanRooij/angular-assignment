@@ -4,16 +4,19 @@
   background-color: $selectedClientBackgroundColor;
 }
 
+.subtitle {
+  padding: $standardPadding;
+}
+
 mat-drawer-container {
   width: 100%;
   height: 100%;
 }
 
 mat-drawer-content {
-  padding: 16px;
+  padding: $standardPadding;
 }
 
 mat-drawer {
-  padding: 16px;
   width: 30%;
 }

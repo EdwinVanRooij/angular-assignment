@@ -1,7 +1,7 @@
 import { SnackbarService } from './../../services/snackbar.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, Subscription, tap } from 'rxjs';
+import { Observable, Subscription, filter, tap } from 'rxjs';
 import { Client } from 'src/app/models/client';
 import { ClientState } from 'src/app/state/client/client.reducers';
 import { selectClients } from 'src/app/state/client/client.selectors';
@@ -14,7 +14,7 @@ import { selectClients } from 'src/app/state/client/client.selectors';
 export class OverviewComponent implements OnInit, OnDestroy {
   clients: Client[] | null = null;
   selectedClient: Client | null = null;
-  isLoading = true;
+  isLoading: boolean = true;
   subscriptions: Subscription[] = [];
 
   constructor(
@@ -25,18 +25,17 @@ export class OverviewComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const loadClientsSubscription = this.store
       .select(selectClients)
-      .pipe(tap(() => (this.isLoading = false)))
+      .pipe(filter((clients) => clients && clients.length > 0))
       .subscribe({
         next: (clients) => {
           this.clients = clients;
+          this.isLoading = false;
         },
         error: (errorMessage: string) => {
           this.snackbarService.showError(errorMessage);
+          this.isLoading = false;
         },
       });
-
-    // Ensure `isLoading` is set to `false`, whatever happens (whether the subscription succeeds or fails)
-    loadClientsSubscription.add(() => (this.isLoading = false));
 
     this.subscriptions.push(loadClientsSubscription);
   }
