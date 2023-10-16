@@ -16,6 +16,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [DetailsComponent, OverviewComponent, CreateComponent],
@@ -30,6 +31,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatProgressBarModule,
     MatDialogModule,
     MatButtonModule,
+    MatFormFieldModule,
   ],
 })
 export class ClientsModule {}

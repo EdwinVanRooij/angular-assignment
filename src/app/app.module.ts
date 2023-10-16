@@ -15,7 +15,16 @@ import { NotFoundComponent } from './not-found/not-found.component';
 // shared module with these kinds of imports so that you can reuse them in other
 // modules.
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
@@ -27,6 +36,16 @@ import { MatDialogModule } from '@angular/material/dialog';
     EffectsModule.forRoot([ClientEffects]),
     MatSnackBarModule,
     MatDialogModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatCardModule,
+    MatDividerModule,
+    MatToolbarModule,
+    MatProgressBarModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatFormFieldModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
