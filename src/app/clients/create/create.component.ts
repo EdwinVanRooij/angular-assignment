@@ -12,10 +12,19 @@ import {
   styleUrls: ['./create.component.scss'],
 })
 export class CreateComponent {
-  errorRequired = 'This field is required';
+  private letterOnlyRegex = /^[a-zA-Z]+$/;
 
-  firstName = new FormControl('', Validators.required);
-  lastName = new FormControl('', Validators.required);
+  fieldIsRequired = 'This field is required';
+  onlyLettersAllowed = 'Only letters are allowed';
+
+  firstName = new FormControl('', [
+    Validators.required,
+    Validators.pattern(this.letterOnlyRegex),
+  ]);
+  lastName = new FormControl('', [
+    Validators.required,
+    Validators.pattern(this.letterOnlyRegex),
+  ]);
   email = new FormControl('', [Validators.required, Validators.email]);
   streetName = new FormControl('', Validators.required);
   houseNumber = new FormControl('', [
@@ -26,7 +35,10 @@ export class CreateComponent {
     Validators.required,
     Validators.pattern(/^\d{4} [A-Za-z]{2}$/),
   ]);
-  city = new FormControl('', Validators.required);
+  city = new FormControl('', [
+    Validators.required,
+    Validators.pattern(this.letterOnlyRegex),
+  ]);
 
   clientFormGroup: FormGroup;
 
@@ -42,9 +54,25 @@ export class CreateComponent {
     });
   }
 
+  getFirstNameErrorMessage(): string {
+    if (this.firstName.hasError('required')) {
+      return this.fieldIsRequired;
+    }
+
+    return this.onlyLettersAllowed;
+  }
+
+  getLastNameErrorMessage(): string {
+    if (this.lastName.hasError('required')) {
+      return this.fieldIsRequired;
+    }
+
+    return this.onlyLettersAllowed;
+  }
+
   getEmailErrorMessage(): string {
     if (this.email.hasError('required')) {
-      return this.errorRequired;
+      return this.fieldIsRequired;
     }
 
     if (this.email.hasError('email')) {
@@ -56,7 +84,7 @@ export class CreateComponent {
 
   getHouseNumberErrorMessage(): string {
     if (this.postalCode.hasError('required')) {
-      return this.errorRequired;
+      return this.fieldIsRequired;
     }
 
     return "Please follow the format '12' (2 digits)";
@@ -64,7 +92,7 @@ export class CreateComponent {
 
   getPostalCodeErrorMessage(): string {
     if (this.postalCode.hasError('required')) {
-      return this.errorRequired;
+      return this.fieldIsRequired;
     }
 
     return "Please follow the format '1234 AB' (4 digits, 2 letters)";
