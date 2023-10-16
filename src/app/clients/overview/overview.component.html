@@ -1,46 +1,24 @@
-<mat-drawer-container class="example-container">
+<mat-drawer-container>
   <mat-drawer mode="side" opened>
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Clients</mat-card-title>
-        <mat-card-subtitle>
-          <em>Click on any client to view its details.</em>
-        </mat-card-subtitle>
-      </mat-card-header>
+    <h1>Clients</h1>
+    <sub> Click on any client to view its details. </sub>
 
-      <mat-card-content>
-        <mat-list>
-          <mat-list-item
-            *ngFor="let client of client$ | async"
-            (click)="onSelectClient(client)"
-          >
+    <hr />
+
+    <mat-list>
+      <ng-container *ngFor="let client of client$ | async; let last = last">
+        <mat-list-item (click)="onSelectClient(client)">
+          <span>
             <mat-icon mat-list-icon>person</mat-icon>
-            <h4 mat-line>{{ client.name }}</h4>
-            <p mat-line>{{ client.email }}</p>
-          </mat-list-item>
-        </mat-list>
-      </mat-card-content>
-    </mat-card>
+            {{ client.name }}
+          </span>
+        </mat-list-item>
+        <mat-divider *ngIf="!last"></mat-divider>
+      </ng-container>
+    </mat-list>
   </mat-drawer>
 
   <mat-drawer-content>
     <app-details *ngIf="selectedClient" [client]="selectedClient"></app-details>
   </mat-drawer-content>
 </mat-drawer-container>
-<!-- 
-<div class="container">
-  <div class="client-list">
-    <ul>
-      <li
-        *ngFor="let client of client$ | async"
-        (click)="onSelectClient(client)"
-      >
-        {{ client.name }}
-      </li>
-    </ul>
-  </div>
-  <div class="client-details">
-    <h2>Client Details</h2>
-    <app-details *ngIf="selectedClient" [client]="selectedClient"></app-details>
-  </div>
-</div> -->
