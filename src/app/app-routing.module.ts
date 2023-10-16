@@ -13,8 +13,11 @@ const routes: Routes = [
   {
     // TODO (out of scope for this assignment): implement authorization and
     // authentication guards to protect this module from non-logged in users and
-    // non-authorized users
+    // non-authorized users.
     path: ApplicationRoutes.ClientsOverview,
+    // Since we are lazy loading modules, ensure children are loaded once we hit this route.
+    loadChildren: () =>
+      import('./clients/clients.module').then((module) => module.ClientsModule),
     component: OverviewComponent,
   },
   {
