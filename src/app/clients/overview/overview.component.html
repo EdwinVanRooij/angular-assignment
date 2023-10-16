@@ -1,11 +1,10 @@
 <mat-drawer-container>
   <mat-drawer mode="side" opened>
-    <!-- Header with Material Toolbar -->
     <mat-toolbar color="primary">
       <h1>Clients</h1>
     </mat-toolbar>
-    <ng-container *ngIf="isLoading; then loadingTemplate; else subtitle">
-    </ng-container>
+
+    <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
 
     <mat-list *ngIf="!isLoading">
       <div
@@ -35,10 +34,4 @@
   </mat-list-item>
 </ng-template>
 
-<ng-template #loadingTemplate>
-  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-</ng-template>
-
-<ng-template #subtitle>
-  <span class="subtitle"> Click on any client to view its details. </span>
-</ng-template>
+<ng-template #loadingTemplate> </ng-template>
