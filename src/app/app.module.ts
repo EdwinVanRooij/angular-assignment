@@ -9,9 +9,10 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreKeys } from './state/store-keys';
 import { clientReducer } from './state/client/client.reducers';
 import { ClientEffects } from './state/client/client.effects';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, NotFoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
