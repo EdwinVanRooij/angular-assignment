@@ -24,7 +24,7 @@ export class CreateComponent {
   ]);
   postalCode = new FormControl('', [
     Validators.required,
-    Validators.pattern(/^\d{4} [A-Z]{2}$/),
+    Validators.pattern(/^\d{4} [A-Za-z]{2}$/),
   ]);
   city = new FormControl('', Validators.required);
 
@@ -52,5 +52,21 @@ export class CreateComponent {
     }
 
     return '';
+  }
+
+  getHouseNumberErrorMessage(): string {
+    if (this.postalCode.hasError('required')) {
+      return this.errorRequired;
+    }
+
+    return "Please follow the format '12' (2 digits)";
+  }
+
+  getPostalCodeErrorMessage(): string {
+    if (this.postalCode.hasError('required')) {
+      return this.errorRequired;
+    }
+
+    return "Please follow the format '1234 AB' (4 digits, 2 letters)";
   }
 }
