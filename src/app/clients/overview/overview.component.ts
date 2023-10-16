@@ -56,7 +56,6 @@ export class OverviewComponent implements OnInit, OnDestroy {
   onClickPlus(): void {
     const dialogRef = this.dialog.open(CreateComponent, {
       width: '30%',
-      height: '50%',
     });
   }
 }
