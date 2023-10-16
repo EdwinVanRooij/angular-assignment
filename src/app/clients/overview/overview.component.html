@@ -6,15 +6,16 @@
     <hr />
 
     <mat-list *ngIf="!isLoading; loadingTemplate">
-      <ng-container *ngFor="let client of clients; let last = last">
-        <mat-list-item (click)="onSelectClient(client)">
-          <span>
-            <mat-icon mat-list-icon>person</mat-icon>
-            {{ client.name }}
-          </span>
-        </mat-list-item>
+      <div
+        *ngFor="let client of clients; let last = last"
+        [ngClass]="{ selected: client === selectedClient }"
+      >
+        <ng-container
+          [ngTemplateOutlet]="clientTemplate"
+          [ngTemplateOutletContext]="{ $implicit: client }"
+        ></ng-container>
         <mat-divider *ngIf="!last"></mat-divider>
-      </ng-container>
+      </div>
     </mat-list>
   </mat-drawer>
 
@@ -22,5 +23,14 @@
     <app-details *ngIf="selectedClient" [client]="selectedClient"></app-details>
   </mat-drawer-content>
 </mat-drawer-container>
+
+<ng-template #clientTemplate let-client>
+  <mat-list-item (click)="onSelectClient(client)">
+    <span class="clickable-element">
+      <mat-icon mat-list-icon>person</mat-icon>
+      {{ client.name }}
+    </span>
+  </mat-list-item>
+</ng-template>
 
 <ng-template #loadingTemplate> Loading... </ng-template>

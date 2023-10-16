@@ -1,12 +1,8 @@
-// .container {
-//   display: flex;
-// }
-// .client-list {
-//   width: 50%;
-// }
-// .client-details {
-//   width: 50%;
-// }
+@import "src/styles/_variables.scss";
+
+.selected {
+  background-color: $selectedClientBackgroundColor;
+}
 
 mat-drawer-container {
   width: 100%;
