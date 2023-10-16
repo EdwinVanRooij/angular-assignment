@@ -1,5 +1,6 @@
 <mat-drawer-container>
   <mat-drawer mode="side" opened disableClose="true">
+    <!-- Title -->
     <mat-toolbar color="primary">
       <h1>Clients</h1>
     </mat-toolbar>
@@ -7,10 +8,12 @@
     <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
 
     <ng-container *ngIf="!isLoading">
+      <!-- Subtitle -->
       <ng-container
         [ngTemplateOutlet]="subtitleAndCreateTemplate"
       ></ng-container>
 
+      <!-- start Clients -->
       <mat-list>
         <div
           *ngFor="let client of clients; let last = last"
@@ -23,6 +26,7 @@
           <mat-divider *ngIf="!last"></mat-divider>
         </div>
       </mat-list>
+      <!-- end Clients -->
     </ng-container>
   </mat-drawer>
 
@@ -31,6 +35,7 @@
   </mat-drawer-content>
 </mat-drawer-container>
 
+<!-- start Templates -->
 <ng-template #subtitleAndCreateTemplate>
   <div class="subtitle-and-create-container">
     <span class="subtitle"> Click any client to view its details. </span>
@@ -54,3 +59,4 @@
     </span>
   </mat-list-item>
 </ng-template>
+<!-- end Templates -->

@@ -22,6 +22,8 @@ export class CreateComponent {
   fieldIsRequired = 'This field is required';
   onlyLettersAllowed = 'Only letters are allowed';
 
+  // Define all form controls. Validators are set here, which trigger the errors
+  // defined in the template.
   firstName = new FormControl('', [
     Validators.required,
     Validators.pattern(this.letterOnlyRegex),
@@ -63,16 +65,25 @@ export class CreateComponent {
     });
   }
 
-  onConfirm(): void {
+  /**
+   * Occurs when a client clicked 'Confirm' in the popup.
+   */
+  onConfirmCreateClient(): void {
     if (this.clientFormGroup.valid) {
       const clientData = this.clientFormGroup.value;
+
+      // Map the data from the form onto our Client model
       const client: Client = {
         ...clientData,
         address: {
           ...clientData,
         },
       };
+
+      // Dispatch the new client to the store. This ensures that all those
+      // subscriptions that listen to it, are sent the this new client.
       this.store.dispatch(addClient({ client }));
+
       this.dialogRef.close();
     }
   }
