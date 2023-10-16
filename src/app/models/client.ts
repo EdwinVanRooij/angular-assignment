@@ -1,11 +1,11 @@
 export interface Client {
   id: number;
-  name: string;
-  surname: string;
+  firstName: string;
+  lastName: string;
   email: string;
   address: {
     streetName: string;
-    postCode: string;
+    postalCode: string;
     houseNumber: number;
     city: string;
   };

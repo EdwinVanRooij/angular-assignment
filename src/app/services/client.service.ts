@@ -6,12 +6,10 @@ import { Client } from '../models/client';
   providedIn: 'root',
 })
 export class ClientService {
-  constructor() {}
-
   getAll(): Observable<Client[]> {
     // For this assignment, pretend these clients are fetched from a backend
     // service. Add some time to account for network traffic delay.
-    return of(ClientService.generateDummyClients(10)).pipe(delay(500));
+    return of(ClientService.generateDummyClients(50)).pipe(delay(500));
     // return of(ClientService.generateDummyClients(15)).pipe(delay(2500));
 
     // Otherwise, it could look something like this.
@@ -25,14 +23,14 @@ export class ClientService {
     for (let index = 1; index <= quantity; index++) {
       const client: Client = {
         id: index,
-        name: `Name${index}`,
-        surname: `Surname${index}`,
+        firstName: `Name ${index}`,
+        lastName: `Last name ${index}`,
         email: `email${index}@example.com`,
         address: {
-          streetName: `Street${index}`,
-          postCode: `PostCode${index}`,
+          streetName: `Some street`,
+          postalCode: `${index}${index}${index}${index} AA`,
           houseNumber: index,
-          city: `City${index}`,
+          city: `Some city`,
         },
       };
 

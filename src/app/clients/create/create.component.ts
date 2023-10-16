@@ -5,6 +5,11 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
+import { Client } from 'src/app/models/client';
+import { addClient } from 'src/app/state/client/client.actions';
+import { ClientState } from 'src/app/state/client/client.reducers';
 
 @Component({
   selector: 'app-create',
@@ -12,7 +17,7 @@ import {
   styleUrls: ['./create.component.scss'],
 })
 export class CreateComponent {
-  private letterOnlyRegex = /^[a-zA-Z]+$/;
+  private letterOnlyRegex = /^[a-zA-Z\s]+$/;
 
   fieldIsRequired = 'This field is required';
   onlyLettersAllowed = 'Only letters are allowed';
@@ -33,7 +38,7 @@ export class CreateComponent {
   ]);
   postalCode = new FormControl('', [
     Validators.required,
-    Validators.pattern(/^\d{4} [A-Za-z]{2}$/),
+    Validators.pattern(/^\d{4} ?[A-Za-z]{2}$/),
   ]);
   city = new FormControl('', [
     Validators.required,
@@ -42,7 +47,11 @@ export class CreateComponent {
 
   clientFormGroup: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private store: Store<ClientState>,
+    private dialogRef: MatDialogRef<CreateComponent>
+  ) {
     this.clientFormGroup = this.formBuilder.group({
       firstName: this.firstName,
       lastName: this.lastName,
@@ -52,6 +61,20 @@ export class CreateComponent {
       postalCode: this.postalCode,
       city: this.city,
     });
+  }
+
+  onConfirm(): void {
+    if (this.clientFormGroup.valid) {
+      const clientData = this.clientFormGroup.value;
+      const client: Client = {
+        ...clientData,
+        address: {
+          ...clientData,
+        },
+      };
+      this.store.dispatch(addClient({ client }));
+      this.dialogRef.close();
+    }
   }
 
   getFirstNameErrorMessage(): string {

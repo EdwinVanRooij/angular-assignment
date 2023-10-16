@@ -1,7 +1,9 @@
 <mat-card>
   <mat-card-header>
     <mat-icon mat-card-avatar>person</mat-icon>
-    <mat-card-title>{{ client.name }} {{ client.surname }}</mat-card-title>
+    <mat-card-title
+      >{{ client.firstName }} {{ client.lastName }}</mat-card-title
+    >
     <mat-card-subtitle>{{ client.email }}</mat-card-subtitle>
   </mat-card-header>
 
@@ -15,7 +17,7 @@
         <div mat-line>House Number: {{ client.address.houseNumber }}</div>
       </mat-list-item>
       <mat-list-item>
-        <div mat-line>Post Code: {{ client.address.postCode }}</div>
+        <div mat-line>Postal Code: {{ client.address.postalCode }}</div>
       </mat-list-item>
       <mat-list-item>
         <div mat-line>City: {{ client.address.city }}</div>
