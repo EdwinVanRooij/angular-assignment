@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>Create Client</h1>
 
 <div mat-dialog-content>
-  <form>
+  <form [formGroup]="form">
     <section class="section">
       <h4>Personal Details</h4>
 
@@ -9,19 +9,28 @@
         <!-- First Name -->
         <mat-form-field class="flex-50">
           <mat-label>First Name</mat-label>
-          <input matInput placeholder="John" />
+          <input matInput placeholder="John" formControlName="firstName" />
+          <mat-error *ngIf="firstName.invalid">{{ errorRequired }}</mat-error>
         </mat-form-field>
         <!-- Last Name -->
         <mat-form-field class="flex-50">
           <mat-label>Last Name</mat-label>
-          <input matInput placeholder="Doe" />
+          <input matInput placeholder="Doe" formControlName="lastName" />
+          <mat-error *ngIf="lastName.invalid">{{ errorRequired }}</mat-error>
         </mat-form-field>
       </div>
       <div class="flex-row">
         <!-- Email Address -->
         <mat-form-field class="flex-100">
           <mat-label>Email Address</mat-label>
-          <input matInput placeholder="johndoe@gmail.com" />
+          <input
+            matInput
+            placeholder="johndoe@gmail.com"
+            formControlName="email"
+          />
+          <mat-error *ngIf="email.invalid">{{
+            getEmailErrorMessage()
+          }}</mat-error>
         </mat-form-field>
       </div>
     </section>
@@ -32,24 +41,24 @@
         <!-- Street Name -->
         <mat-form-field class="flex-75">
           <mat-label>Street Name</mat-label>
-          <input matInput placeholder="Baker" />
+          <input matInput placeholder="Baker" formControlName="streetName " />
         </mat-form-field>
         <!-- House Number -->
         <mat-form-field class="flex-25">
           <mat-label>House Number</mat-label>
-          <input matInput placeholder="21" />
+          <input matInput placeholder="21" formControlName="houseNumber" />
         </mat-form-field>
       </div>
       <div class="flex-row">
         <!-- Postal Code -->
         <mat-form-field class="flex-100">
           <mat-label>Postal Code</mat-label>
-          <input matInput placeholder="1234 AB" />
+          <input matInput placeholder="1234 AB" formControlName="postalCode" />
         </mat-form-field>
         <!-- City -->
         <mat-form-field class="flex-100">
           <mat-label>City</mat-label>
-          <input matInput placeholder="Utrecht" />
+          <input matInput placeholder="Utrecht" formControlName="city" />
         </mat-form-field>
       </div>
     </section>
