@@ -2,8 +2,87 @@
 
 <div mat-dialog-content>
   <form [formGroup]="clientFormGroup">
-    <ng-container [ngTemplateOutlet]="personalDetailsTemplate"></ng-container>
-    <ng-container [ngTemplateOutlet]="addressTemplate"></ng-container>
+    <!-- start Personal Details -->
+    <section class="section">
+      <h4>Personal Details</h4>
+
+      <div class="flex-row">
+        <!-- First Name -->
+        <mat-form-field class="flex-50">
+          <mat-label>First Name</mat-label>
+          <input matInput placeholder="John" formControlName="firstName" />
+          <mat-error *ngIf="firstName.invalid">{{
+            getFirstNameErrorMessage()
+          }}</mat-error>
+        </mat-form-field>
+
+        <!-- Last Name -->
+        <mat-form-field class="flex-50">
+          <mat-label>Last Name</mat-label>
+          <input matInput placeholder="Doe" formControlName="lastName" />
+          <mat-error *ngIf="lastName.invalid">{{
+            getLastNameErrorMessage()
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="flex-row">
+        <!-- Email Address -->
+        <mat-form-field class="flex-100">
+          <mat-label>Email Address</mat-label>
+          <input
+            matInput
+            placeholder="johndoe@gmail.com"
+            formControlName="email"
+          />
+          <mat-error *ngIf="email.invalid">{{
+            getEmailErrorMessage()
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+    </section>
+    <!-- end Personal Details -->
+
+    <!-- start Personal Details -->
+    <section class="section">
+      <h4>Address</h4>
+      <div class="flex-row">
+        <!-- Street Name -->
+        <mat-form-field class="flex-75">
+          <mat-label>Street Name</mat-label>
+          <input matInput placeholder="Baker" formControlName="streetName" />
+          <mat-error *ngIf="streetName.invalid">{{
+            fieldIsRequired
+          }}</mat-error>
+        </mat-form-field>
+
+        <!-- House Number -->
+        <mat-form-field class="flex-25">
+          <mat-label>House Number</mat-label>
+          <input matInput placeholder="21" formControlName="houseNumber" />
+          <mat-error *ngIf="houseNumber.invalid">{{
+            getHouseNumberErrorMessage()
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="flex-row">
+        <!-- Postal Code -->
+        <mat-form-field class="flex-100">
+          <mat-label>Postal Code</mat-label>
+          <input matInput placeholder="1234 AB" formControlName="postalCode" />
+          <mat-error *ngIf="postalCode.invalid">{{
+            getPostalCodeErrorMessage()
+          }}</mat-error>
+        </mat-form-field>
+
+        <!-- City -->
+        <mat-form-field class="flex-100">
+          <mat-label>City</mat-label>
+          <input matInput placeholder="Utrecht" formControlName="city" />
+          <mat-error *ngIf="city.invalid">{{ fieldIsRequired }}</mat-error>
+        </mat-form-field>
+      </div>
+    </section>
+    <!-- end Personal Details -->
   </form>
 </div>
 
@@ -19,85 +98,3 @@
     Confirm
   </button>
 </div>
-
-<!-- start Templates -->
-<ng-template #personalDetailsTemplate>
-  <section class="section">
-    <h4>Personal Details</h4>
-
-    <div class="flex-row">
-      <!-- First Name -->
-      <mat-form-field class="flex-50">
-        <mat-label>First Name</mat-label>
-        <input matInput placeholder="John" formControlName="firstName" />
-        <mat-error *ngIf="firstName.invalid">{{
-          getFirstNameErrorMessage()
-        }}</mat-error>
-      </mat-form-field>
-
-      <!-- Last Name -->
-      <mat-form-field class="flex-50">
-        <mat-label>Last Name</mat-label>
-        <input matInput placeholder="Doe" formControlName="lastName" />
-        <mat-error *ngIf="lastName.invalid">{{
-          getLastNameErrorMessage()
-        }}</mat-error>
-      </mat-form-field>
-    </div>
-    <div class="flex-row">
-      <!-- Email Address -->
-      <mat-form-field class="flex-100">
-        <mat-label>Email Address</mat-label>
-        <input
-          matInput
-          placeholder="johndoe@gmail.com"
-          formControlName="email"
-        />
-        <mat-error *ngIf="email.invalid">{{
-          getEmailErrorMessage()
-        }}</mat-error>
-      </mat-form-field>
-    </div>
-  </section>
-</ng-template>
-
-<ng-template #addressTemplate>
-  <section class="section">
-    <h4>Address</h4>
-    <div class="flex-row">
-      <!-- Street Name -->
-      <mat-form-field class="flex-75">
-        <mat-label>Street Name</mat-label>
-        <input matInput placeholder="Baker" formControlName="streetName" />
-        <mat-error *ngIf="streetName.invalid">{{ fieldIsRequired }}</mat-error>
-      </mat-form-field>
-
-      <!-- House Number -->
-      <mat-form-field class="flex-25">
-        <mat-label>House Number</mat-label>
-        <input matInput placeholder="21" formControlName="houseNumber" />
-        <mat-error *ngIf="houseNumber.invalid">{{
-          getHouseNumberErrorMessage()
-        }}</mat-error>
-      </mat-form-field>
-    </div>
-    <div class="flex-row">
-      <!-- Postal Code -->
-      <mat-form-field class="flex-100">
-        <mat-label>Postal Code</mat-label>
-        <input matInput placeholder="1234 AB" formControlName="postalCode" />
-        <mat-error *ngIf="postalCode.invalid">{{
-          getPostalCodeErrorMessage()
-        }}</mat-error>
-      </mat-form-field>
-
-      <!-- City -->
-      <mat-form-field class="flex-100">
-        <mat-label>City</mat-label>
-        <input matInput placeholder="Utrecht" formControlName="city" />
-        <mat-error *ngIf="city.invalid">{{ fieldIsRequired }}</mat-error>
-      </mat-form-field>
-    </div>
-  </section>
-</ng-template>
-<!-- end Templates -->
