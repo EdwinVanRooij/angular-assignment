@@ -11,6 +11,11 @@ import { clientReducer } from './state/client/client.reducers';
 import { ClientEffects } from './state/client/client.effects';
 import { NotFoundComponent } from './not-found/not-found.component';
 
+// I'm just importing this here for now manually, but ideally you'd have a
+// shared module with these kinds of imports so that you can reuse them in other
+// modules.
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
   imports: [
@@ -19,6 +24,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     BrowserAnimationsModule,
     StoreModule.forRoot({ [StoreKeys.Client]: clientReducer }),
     EffectsModule.forRoot([ClientEffects]),
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

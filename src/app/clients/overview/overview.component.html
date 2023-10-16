@@ -5,8 +5,8 @@
 
     <hr />
 
-    <mat-list>
-      <ng-container *ngFor="let client of client$ | async; let last = last">
+    <mat-list *ngIf="!isLoading; loadingTemplate">
+      <ng-container *ngFor="let client of clients; let last = last">
         <mat-list-item (click)="onSelectClient(client)">
           <span>
             <mat-icon mat-list-icon>person</mat-icon>
@@ -22,3 +22,5 @@
     <app-details *ngIf="selectedClient" [client]="selectedClient"></app-details>
   </mat-drawer-content>
 </mat-drawer-container>
+
+<ng-template #loadingTemplate> Loading... </ng-template>
