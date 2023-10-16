@@ -13,7 +13,10 @@ export const initialState: ClientState = {
 
 export const clientReducer = createReducer(
   initialState,
-  on(ClientActions.addClient, (state, { client }) => {
+  on(ClientActions.addClient, (state, { client }): ClientState => {
     return { ...state, clients: [...state.clients, client] };
+  }),
+  on(ClientActions.setClients, (state, { clients }): ClientState => {
+    return { ...state, clients: [...state.clients, ...clients] };
   })
 );

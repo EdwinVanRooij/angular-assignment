@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, map, of } from 'rxjs';
+import { Observable, delay, map, of } from 'rxjs';
 import { Client } from 'src/app/models/client';
 import { ClientState } from 'src/app/state/client/client.reducers';
 import { selectClients } from 'src/app/state/client/client.selectors';
@@ -15,10 +15,7 @@ export class OverviewComponent {
   selectedClient: Client | null = null;
 
   constructor(private store: Store<ClientState>) {
-    // this.client$ = this.store.select(selectClients);
-    const client: Client = { name: 'name', email: 'email' };
-
-    this.client$ = of([client]);
+    this.client$ = this.store.select(selectClients);
   }
 
   onSelectClient(client: Client): void {
