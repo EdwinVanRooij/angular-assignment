@@ -11,7 +11,8 @@ export class ClientService {
   getAll(): Observable<Client[]> {
     // For this assignment, pretend these clients are fetched from a backend
     // service. Add some time to account for network traffic delay.
-    return of(ClientService.generateDummyClients(15)).pipe(delay(2500));
+    return of(ClientService.generateDummyClients(15)).pipe(delay(500));
+    // return of(ClientService.generateDummyClients(15)).pipe(delay(2500));
 
     // Otherwise, it could look something like this.
     // const baseUrl = "some-base-url-from-a-config-file";

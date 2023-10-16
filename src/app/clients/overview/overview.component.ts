@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, delay, map, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Client } from 'src/app/models/client';
 import { ClientState } from 'src/app/state/client/client.reducers';
 import { selectClients } from 'src/app/state/client/client.selectors';
