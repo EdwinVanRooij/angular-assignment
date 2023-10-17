@@ -1,3 +1,5 @@
+![Landing page](assets/images/landing-page.png)
+
 # Angular Assignment
 
 ## Description
@@ -15,7 +17,7 @@ This application was made in preparation of an interview. The assignment:
 > send us the github link, or Google or One Drive link for a zip file without
 > node_modules folder.
 
-![Landing page](assets/images/landing-page.png)
+![Demo](assets/videos/demo.mov)
 
 ## Features
 
