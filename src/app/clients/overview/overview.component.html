@@ -1,0 +1,61 @@
+<mat-drawer-container>
+  <mat-drawer mode="side" opened disableClose="true">
+    <button
+      class="create-button"
+      class="floating-button"
+      mat-fab
+      color="primary"
+      (click)="onClickPlus()"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+
+    <ng-container *ngIf="!isLoading; else loadingSpinner">
+      <!-- start Clients -->
+      <mat-list>
+        <div
+          *ngFor="let client of clients; let last = last"
+          [ngClass]="{ selected: client === selectedClient }"
+        >
+          <ng-container
+            [ngTemplateOutlet]="clientTemplate"
+            [ngTemplateOutletContext]="{ $implicit: client }"
+          ></ng-container>
+          <mat-divider *ngIf="!last"></mat-divider>
+        </div>
+      </mat-list>
+      <!-- end Clients -->
+    </ng-container>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <app-details
+      *ngIf="selectedClient; else placeholderTemplate"
+      [client]="selectedClient"
+    ></app-details>
+  </mat-drawer-content>
+</mat-drawer-container>
+
+<!-- start Templates -->
+<ng-template #loadingSpinner>
+  <div class="loading-container">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>
+
+<ng-template #clientTemplate let-client>
+  <mat-list-item (click)="onSelectClient(client)" class="clickable-element">
+    <span class="clickable-element">
+      {{ client.firstName }}
+    </span>
+  </mat-list-item>
+</ng-template>
+
+<ng-template #placeholderTemplate>
+  <app-placeholder
+    [message]="'Select any client to view its details'"
+    [iconKey]="'person'"
+  >
+  </app-placeholder>
+</ng-template>
+<!-- end Templates -->

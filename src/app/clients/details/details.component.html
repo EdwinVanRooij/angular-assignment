@@ -1,0 +1,30 @@
+<mat-card>
+  <mat-card-header>
+    <mat-icon mat-card-avatar>person</mat-icon>
+    <mat-card-title
+      >{{ client.firstName }} {{ client.lastName }}</mat-card-title
+    >
+    <mat-card-subtitle>{{ client.email }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-list>
+      <h3 mat-subheader>Address</h3>
+      <mat-list-item>
+        <div mat-line>Street: {{ client.address.streetName }}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div mat-line>House Number: {{ client.address.houseNumber }}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div mat-line>Postal Code: {{ client.address.postalCode }}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div mat-line>City: {{ client.address.city }}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div mat-line>Email: {{ client.email }}</div>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

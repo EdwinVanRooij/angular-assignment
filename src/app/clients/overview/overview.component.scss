@@ -1,0 +1,39 @@
+@import "src/styles/_variables.scss";
+
+mat-drawer-container {
+  width: 100%;
+  height: 100%;
+
+  mat-drawer {
+    width: 30%;
+  }
+
+  mat-drawer-content {
+    padding: $standardMaterialElementDistance;
+  }
+
+  mat-list-item:hover {
+    cursor: pointer;
+    background-color: $hoveredClientBackgroundColor;
+  }
+
+  .selected {
+    background-color: $selectedClientBackgroundColor;
+  }
+
+  .subtitle {
+    padding: $standardMaterialElementDistance;
+  }
+
+  .floating-button {
+    margin-top: $standardMaterialElementDistance;
+    margin-right: $standardMaterialElementDistance;
+  }
+
+  .loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+}
