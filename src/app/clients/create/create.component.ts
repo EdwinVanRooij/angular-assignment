@@ -19,8 +19,8 @@ import { ClientState } from 'src/app/state/client/client.reducers';
 export class CreateComponent {
   private letterOnlyRegex = /^[a-zA-Z\s]+$/;
 
-  fieldIsRequired = 'This field is required';
-  onlyLettersAllowed = 'Only letters are allowed';
+  fieldIsRequired = 'Field is required';
+  onlyLettersAllowed = 'Only letters allowed';
 
   // Define all form controls. Validators are set here, which trigger the errors
   // defined in the template.
@@ -117,11 +117,11 @@ export class CreateComponent {
   }
 
   getHouseNumberErrorMessage(): string {
-    if (this.postalCode.hasError('required')) {
+    if (this.houseNumber.hasError('required')) {
       return this.fieldIsRequired;
     }
 
-    return "Please follow the format '12' (2 digits)";
+    return 'Only digits allowed';
   }
 
   getPostalCodeErrorMessage(): string {

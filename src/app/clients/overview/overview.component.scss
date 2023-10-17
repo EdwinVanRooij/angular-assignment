@@ -1,42 +1,35 @@
 @import "src/styles/_variables.scss";
 
-.selected {
-  background-color: $selectedClientBackgroundColor;
-}
-
-.subtitle {
-  padding: $standardMaterialElementDistance;
-}
-
-.floating-button {
-  margin-top: $standardMaterialElementDistance;
-  margin-right: $standardMaterialElementDistance;
-}
-
 mat-drawer-container {
   width: 100%;
   height: 100%;
-}
 
-mat-drawer-content {
-  padding: $standardMaterialElementDistance;
-}
-
-mat-drawer {
-  width: 30%;
-}
-
-.subtitle-and-create-container {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-
-  .subtitle {
-    align-self: flex-start;
+  mat-drawer {
+    width: 30%;
   }
 
-  .create-button {
-    align-self: flex-end;
+  mat-drawer-content {
+    padding: $standardMaterialElementDistance;
+  }
+
+  .selected {
+    background-color: $selectedClientBackgroundColor;
+  }
+
+  .subtitle {
+    padding: $standardMaterialElementDistance;
+  }
+
+  .floating-button {
+    margin-top: $standardMaterialElementDistance;
+    margin-right: $standardMaterialElementDistance;
+  }
+
+  .loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
   }
 }
 
