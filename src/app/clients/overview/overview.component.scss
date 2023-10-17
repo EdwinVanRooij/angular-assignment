@@ -12,6 +12,11 @@ mat-drawer-container {
     padding: $standardMaterialElementDistance;
   }
 
+  mat-list-item:hover {
+    cursor: pointer;
+    background-color: $hoveredClientBackgroundColor;
+  }
+
   .selected {
     background-color: $selectedClientBackgroundColor;
   }

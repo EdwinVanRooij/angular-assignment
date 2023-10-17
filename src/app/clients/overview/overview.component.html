@@ -44,9 +44,8 @@
 </ng-template>
 
 <ng-template #clientTemplate let-client>
-  <mat-list-item (click)="onSelectClient(client)">
+  <mat-list-item (click)="onSelectClient(client)" class="clickable-element">
     <span class="clickable-element">
-      <mat-icon mat-list-icon>person</mat-icon>
       {{ client.firstName }}
     </span>
   </mat-list-item>
