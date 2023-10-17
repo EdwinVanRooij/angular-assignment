@@ -4,15 +4,16 @@
 
 This application was made in preparation of an interview. The assignment:
 
-> Create a small angular application using angular 16. The application should >
-> have 2 forms. The first form should allow you to create a client with fields >
-> like Name, Surname, email and address (street name, post code, house number and
-> city). The second form should allow you to view the list of all clients and
-> view > the details of a selected client. You are allowed to use any libraries
-> you like. > You do not have to spend too much time on the assignment but write
-> the code like > you would write it for production. Please also let us know how
-> many hours you > spent working on this. You can send us the github link, or
-> Google or One Drive > link for a zip file without node_modules folder.
+> Create a small angular application using angular 16. The application should
+> have 2 forms. The first form should allow you to create a client with
+> fields like Name, Surname, email and address (street name, post code, house
+> number and city). The second form should allow you to view the list of all
+> clients and view the details of a selected client. You are allowed to use
+> any libraries you like. You do not have to spend too much time on the
+> assignment but write the code like you would write it for production.
+> Please also let us know how many hours you spent working on this. You can
+> send us the github link, or Google or One Drive link for a zip file without
+> node_modules folder.
 
 ![Landing page](assets/images/landing-page.png)
 
