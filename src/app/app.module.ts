@@ -11,6 +11,7 @@ import { clientReducer } from './state/client/client.reducers';
 import { ClientEffects } from './state/client/client.effects';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MaterialModule } from './shared/material/material.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
@@ -19,6 +20,7 @@ import { MaterialModule } from './shared/material/material.module';
     MaterialModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     StoreModule.forRoot({ [StoreKeys.Client]: clientReducer }),
     EffectsModule.forRoot([ClientEffects]),
   ],
