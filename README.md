@@ -17,8 +17,6 @@ This application was made in preparation of an interview. The assignment:
 > send us the github link, or Google or One Drive link for a zip file without
 > node_modules folder.
 
-![Demo](assets/videos/demo.mov)
-
 ## Features
 
 - List clients
