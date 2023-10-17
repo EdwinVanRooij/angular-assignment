@@ -1,16 +1,16 @@
 <mat-drawer-container>
   <mat-drawer mode="side" opened disableClose="true">
-    <ng-container *ngIf="!isLoading; else loadingSpinner">
-      <button
-        class="create-button"
-        class="floating-button"
-        mat-fab
-        color="primary"
-        (click)="onClickPlus()"
-      >
-        <mat-icon>add</mat-icon>
-      </button>
+    <button
+      class="create-button"
+      class="floating-button"
+      mat-fab
+      color="primary"
+      (click)="onClickPlus()"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
 
+    <ng-container *ngIf="!isLoading; else loadingSpinner">
       <!-- start Clients -->
       <mat-list>
         <div
