@@ -6,6 +6,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
+    // Reroute the root URL to the (currently) only page of this application: Clients Overview
     path: '',
     redirectTo: ApplicationRoutes.ClientsOverview,
     pathMatch: 'full',
@@ -25,6 +26,7 @@ const routes: Routes = [
     component: NotFoundComponent,
   },
   {
+    // Reroute any incorrect path attempts
     path: '**',
     redirectTo: ApplicationRoutes.NotFound,
     pathMatch: 'full',
