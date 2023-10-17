@@ -1,27 +1,72 @@
-# AngularAssignment
+# Angular Assignment
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.6.
+## Description
 
-## Development server
+This application was made in preparation of an interview. The assignment:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+> Create a small angular application using angular 16. The application should >
+> have 2 forms. The first form should allow you to create a client with fields >
+> like Name, Surname, email and address (street name, post code, house number and
+> city). The second form should allow you to view the list of all clients and
+> view > the details of a selected client. You are allowed to use any libraries
+> you like. > You do not have to spend too much time on the assignment but write
+> the code like > you would write it for production. Please also let us know how
+> many hours you > spent working on this. You can send us the github link, or
+> Google or One Drive > link for a zip file without node_modules folder.
 
-## Code scaffolding
+![Landing page](assets/images/landing-page.png)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Features
 
-## Build
+- List clients
+- View client details
+- Add new clients
+- Real-time updates
+- Initial test data
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Prerequisites
 
-## Running unit tests
+- Node.js
+- Angular CLI
+- Git
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Installation
 
-## Running end-to-end tests
+1. Clone the repository:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```bash
+git clone git@github.com:EdwinVanRooij/angular-assignment.git
+```
 
-## Further help
+2. Navigate to the project folder:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+cd angular-assignment
+```
+
+3. Install dependencies:
+
+```bash
+npm install
+```
+
+4. Run the development server:
+
+```bash
+ng s -o
+```
+
+## Usage
+
+Open your web browser and navigate to `http://localhost:4200`.
+
+## Tests
+
+Run the unit tests using:
+
+```bash
+ng test
+```
+
+> Note: there are no meaningful unit tests for this project. I considered it
+> not a priority for this particular exercise.

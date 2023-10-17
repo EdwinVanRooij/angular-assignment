@@ -14,6 +14,6 @@ export class ClientService {
     // service. Add some time to account for network traffic delay.
     return this.httpClient
       .get<Client[]>('/assets/clients.json')
-      .pipe(delay(1500));
+      .pipe(delay(2500));
   }
 }
