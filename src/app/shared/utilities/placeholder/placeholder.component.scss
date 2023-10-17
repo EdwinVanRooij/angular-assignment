@@ -1,0 +1,14 @@
+.container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+mat-icon {
+  $iconSize: 180px;
+  font-size: $iconSize;
+  width: $iconSize;
+  height: $iconSize;
+}

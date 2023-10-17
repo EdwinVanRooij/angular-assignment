@@ -29,7 +29,10 @@
   </mat-drawer>
 
   <mat-drawer-content>
-    <app-details *ngIf="selectedClient" [client]="selectedClient"></app-details>
+    <app-details
+      *ngIf="selectedClient; else placeholderTemplate"
+      [client]="selectedClient"
+    ></app-details>
   </mat-drawer-content>
 </mat-drawer-container>
 
@@ -48,4 +51,10 @@
     </span>
   </mat-list-item>
 </ng-template>
+
+<ng-template #placeholderTemplate>
+  <app-placeholder [message]="'something'" [iconKey]="'home'">
+  </app-placeholder>
+</ng-template>
+
 <!-- end Templates -->
