@@ -10,11 +10,11 @@
       <mat-icon>add</mat-icon>
     </button>
 
-    <ng-container *ngIf="!isLoading; else loadingSpinner">
+    <ng-container *ngIf="!(isLoadingClients$ | async); else loadingSpinner">
       <!-- start Clients -->
       <mat-list>
         <div
-          *ngFor="let client of clients; let last = last"
+          *ngFor="let client of client$ | async; let last = last"
           [ngClass]="{ selected: client === selectedClient }"
         >
           <ng-container

@@ -6,6 +6,11 @@ export const selectClientState = createFeatureSelector<fromClients.ClientState>(
   StoreKeys.Client
 );
 
+export const isLoadingClients = createSelector(
+  selectClientState,
+  (state: fromClients.ClientState) => state.isLoadingClients
+);
+
 export const selectClients = createSelector(
   selectClientState,
   (state: fromClients.ClientState) => state.clients
