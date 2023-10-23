@@ -1,0 +1,13 @@
+<p>Persons found in NgXs store</p>
+
+<span>Start</span>
+
+<hr />
+
+<div *ngFor="let person of person$ | async">
+  {{ person.firstName }} {{ person.lastName }}
+</div>
+
+<hr />
+
+<span>End</span>

@@ -7,5 +7,5 @@ import { Client } from 'src/app/models/client';
   styleUrls: ['./details.component.scss'],
 })
 export class DetailsComponent {
-  @Input() client!: Client;
+  @Input({ required: true }) client!: Client;
 }

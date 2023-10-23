@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ApplicationRoutes } from './config/application-routes';
-import { OverviewComponent } from './clients/overview/overview.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { OverviewComponent as ClientOverviewComponent } from './clients/overview/overview.component';
+import { OverviewComponent as PersonOverviewComponent } from './persons/overview/overview.component';
 
 const routes: Routes = [
   {
@@ -19,7 +20,13 @@ const routes: Routes = [
     // Since we are lazy loading modules, ensure children are loaded once we hit this route.
     loadChildren: () =>
       import('./clients/clients.module').then((module) => module.ClientsModule),
-    component: OverviewComponent,
+    component: ClientOverviewComponent,
+  },
+  {
+    path: ApplicationRoutes.PersonsOverview,
+    loadChildren: () =>
+      import('./persons/persons.module').then((module) => module.PersonsModule),
+    component: PersonOverviewComponent,
   },
   {
     path: ApplicationRoutes.NotFound,
