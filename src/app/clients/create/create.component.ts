@@ -26,14 +26,20 @@ export class CreateComponent {
       Validators.required,
       Validators.pattern(this.letterOnlyRegex),
     ]),
-    email: [Validators.required, Validators.email],
-    streetName: [Validators.required],
-    houseNumber: [Validators.required, Validators.pattern(/^\d+$/)],
-    postalCode: [
+    email: new FormControl('', [Validators.required, Validators.email]),
+    streetName: new FormControl('', [Validators.required]),
+    houseNumber: new FormControl(null, [
+      Validators.required,
+      Validators.pattern(/^\d+$/),
+    ]),
+    postalCode: new FormControl('', [
       Validators.required,
       Validators.pattern(/^\d{4} ?[A-Za-z]{2}$/),
-    ],
-    city: [Validators.required, Validators.pattern(this.letterOnlyRegex)],
+    ]),
+    city: new FormControl('', [
+      Validators.required,
+      Validators.pattern(this.letterOnlyRegex),
+    ]),
   });
 
   constructor(
