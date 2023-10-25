@@ -1,10 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Client } from 'src/app/models/client';
@@ -22,48 +17,30 @@ export class CreateComponent {
   fieldIsRequired = 'Field is required';
   onlyLettersAllowed = 'Only letters allowed';
 
-  // Define all form controls. Validators are set here, which trigger the errors
-  // defined in the template.
-  firstName = new FormControl('', [
-    Validators.required,
-    Validators.pattern(this.letterOnlyRegex),
-  ]);
-  lastName = new FormControl('', [
-    Validators.required,
-    Validators.pattern(this.letterOnlyRegex),
-  ]);
-  email = new FormControl('', [Validators.required, Validators.email]);
-  streetName = new FormControl('', Validators.required);
-  houseNumber = new FormControl('', [
-    Validators.required,
-    Validators.pattern(/^\d+$/),
-  ]);
-  postalCode = new FormControl('', [
-    Validators.required,
-    Validators.pattern(/^\d{4} ?[A-Za-z]{2}$/),
-  ]);
-  city = new FormControl('', [
-    Validators.required,
-    Validators.pattern(this.letterOnlyRegex),
-  ]);
-
-  clientFormGroup: FormGroup;
+  clientFormGroup = this.formBuilder.group({
+    firstName: new FormControl('', [
+      Validators.required,
+      Validators.pattern(this.letterOnlyRegex),
+    ]),
+    lastName: new FormControl('', [
+      Validators.required,
+      Validators.pattern(this.letterOnlyRegex),
+    ]),
+    email: [Validators.required, Validators.email],
+    streetName: [Validators.required],
+    houseNumber: [Validators.required, Validators.pattern(/^\d+$/)],
+    postalCode: [
+      Validators.required,
+      Validators.pattern(/^\d{4} ?[A-Za-z]{2}$/),
+    ],
+    city: [Validators.required, Validators.pattern(this.letterOnlyRegex)],
+  });
 
   constructor(
     private formBuilder: FormBuilder,
     private store: Store<ClientState>,
     private dialogRef: MatDialogRef<CreateComponent>
-  ) {
-    this.clientFormGroup = this.formBuilder.group({
-      firstName: this.firstName,
-      lastName: this.lastName,
-      email: this.email,
-      streetName: this.streetName,
-      houseNumber: this.houseNumber,
-      postalCode: this.postalCode,
-      city: this.city,
-    });
-  }
+  ) {}
 
   /**
    * Occurs when a client clicked 'Confirm' in the popup.
@@ -74,9 +51,15 @@ export class CreateComponent {
 
       // Map the data from the form onto our Client model
       const client: Client = {
-        ...clientData,
+        id: 1,
+        firstName: clientData.firstName!,
+        lastName: clientData.lastName!,
+        email: clientData.email!,
         address: {
-          ...clientData,
+          streetName: clientData.streetName!,
+          postalCode: clientData.postalCode!,
+          houseNumber: clientData.houseNumber!,
+          city: clientData.city!,
         },
       };
 
@@ -89,7 +72,7 @@ export class CreateComponent {
   }
 
   getFirstNameErrorMessage(): string {
-    if (this.firstName.hasError('required')) {
+    if (this.clientFormGroup.controls.firstName.hasError('required')) {
       return this.fieldIsRequired;
     }
 
@@ -97,7 +80,7 @@ export class CreateComponent {
   }
 
   getLastNameErrorMessage(): string {
-    if (this.lastName.hasError('required')) {
+    if (this.clientFormGroup.controls.lastName.hasError('required')) {
       return this.fieldIsRequired;
     }
 
@@ -105,11 +88,11 @@ export class CreateComponent {
   }
 
   getEmailErrorMessage(): string {
-    if (this.email.hasError('required')) {
+    if (this.clientFormGroup.controls.email.hasError('required')) {
       return this.fieldIsRequired;
     }
 
-    if (this.email.hasError('email')) {
+    if (this.clientFormGroup.controls.email.hasError('email')) {
       return 'Not a valid email';
     }
 
@@ -117,7 +100,7 @@ export class CreateComponent {
   }
 
   getHouseNumberErrorMessage(): string {
-    if (this.houseNumber.hasError('required')) {
+    if (this.clientFormGroup.controls.houseNumber.hasError('required')) {
       return this.fieldIsRequired;
     }
 
@@ -125,7 +108,7 @@ export class CreateComponent {
   }
 
   getPostalCodeErrorMessage(): string {
-    if (this.postalCode.hasError('required')) {
+    if (this.clientFormGroup.controls.postalCode.hasError('required')) {
       return this.fieldIsRequired;
     }
 

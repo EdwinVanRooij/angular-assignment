@@ -11,7 +11,7 @@
         <mat-form-field class="flex-50">
           <mat-label>First Name</mat-label>
           <input matInput placeholder="John" formControlName="firstName" />
-          <mat-error *ngIf="firstName.invalid">{{
+          <mat-error *ngIf="clientFormGroup.controls.firstName.invalid">{{
             getFirstNameErrorMessage()
           }}</mat-error>
         </mat-form-field>
@@ -20,7 +20,7 @@
         <mat-form-field class="flex-50">
           <mat-label>Last Name</mat-label>
           <input matInput placeholder="Doe" formControlName="lastName" />
-          <mat-error *ngIf="lastName.invalid">{{
+          <mat-error *ngIf="clientFormGroup.controls.lastName.invalid">{{
             getLastNameErrorMessage()
           }}</mat-error>
         </mat-form-field>
@@ -34,7 +34,7 @@
             placeholder="johndoe@gmail.com"
             formControlName="email"
           />
-          <mat-error *ngIf="email.invalid">{{
+          <mat-error *ngIf="clientFormGroup.controls.email.invalid">{{
             getEmailErrorMessage()
           }}</mat-error>
         </mat-form-field>
@@ -50,7 +50,7 @@
         <mat-form-field class="flex-75">
           <mat-label>Street Name</mat-label>
           <input matInput placeholder="Baker" formControlName="streetName" />
-          <mat-error *ngIf="streetName.invalid">{{
+          <mat-error *ngIf="clientFormGroup.controls.streetName.invalid">{{
             fieldIsRequired
           }}</mat-error>
         </mat-form-field>
@@ -59,7 +59,7 @@
         <mat-form-field class="flex-25">
           <mat-label>House Number</mat-label>
           <input matInput placeholder="21" formControlName="houseNumber" />
-          <mat-error *ngIf="houseNumber.invalid">{{
+          <mat-error *ngIf="clientFormGroup.controls.houseNumber.invalid">{{
             getHouseNumberErrorMessage()
           }}</mat-error>
         </mat-form-field>
@@ -69,7 +69,7 @@
         <mat-form-field class="flex-100">
           <mat-label>Postal Code</mat-label>
           <input matInput placeholder="1234 AB" formControlName="postalCode" />
-          <mat-error *ngIf="postalCode.invalid">{{
+          <mat-error *ngIf="clientFormGroup.controls.houseNumber.invalid">{{
             getPostalCodeErrorMessage()
           }}</mat-error>
         </mat-form-field>
@@ -78,7 +78,9 @@
         <mat-form-field class="flex-100">
           <mat-label>City</mat-label>
           <input matInput placeholder="Utrecht" formControlName="city" />
-          <mat-error *ngIf="city.invalid">{{ fieldIsRequired }}</mat-error>
+          <mat-error *ngIf="clientFormGroup.controls.city.invalid">{{
+            fieldIsRequired
+          }}</mat-error>
         </mat-form-field>
       </div>
     </section>
