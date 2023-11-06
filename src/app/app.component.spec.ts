@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { MaterialModule } from './shared/material/material.module';
+import { initializeClientStore } from './state/client/client.actions';
 
 describe('AppComponent', () => {
   let store: MockStore;
@@ -20,24 +21,37 @@ describe('AppComponent', () => {
     store = TestBed.inject(MockStore);
   });
 
-  it('should create the app', () => {
+  it('should dispatch initializeClientStore action on initialization', () => {
+    const dispatchSpy = jest.spyOn(store, 'dispatch');
+
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    fixture.detectChanges();
+
+    expect(dispatchSpy).toHaveBeenCalledWith(initializeClientStore());
   });
 
-  it(`should have as title 'AngularAssignment'`, () => {
+  it('should render the "Clients" title', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('AngularAssignment');
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('mat-card-title')?.textContent).toContain(
+      'Clients'
+    );
   });
 
-  it('should render title', () => {
+  it('should render the correct subtitle', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('mat-card-subtitle')?.textContent).toContain(
       'Use this application to view and add clients.'
     );
+  });
+
+  it('should have a router-outlet for child routes', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('router-outlet')).toBeTruthy();
   });
 });
