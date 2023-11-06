@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NotFoundComponent } from './not-found.component';
 import { By } from '@angular/platform-browser';
 import { PlaceholderComponent } from '../shared/utilities/placeholder/placeholder.component';
+import { MaterialModule } from '../shared/material/material.module';
 
 describe('NotFoundComponent', () => {
   let component: NotFoundComponent;
@@ -10,6 +11,7 @@ describe('NotFoundComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [NotFoundComponent, PlaceholderComponent],
+      imports: [MaterialModule],
     }).compileComponents();
   });
 
