@@ -6,13 +6,23 @@ import { Client } from 'src/app/models/client';
 import { addClient } from 'src/app/state/client/client.actions';
 import { ClientState } from 'src/app/state/client/client.reducers';
 
+interface ClientFormValues {
+  firstName: string;
+  lastName: string;
+  email: string;
+  streetName: string;
+  houseNumber: number;
+  postalCode: string;
+  city: string;
+}
+
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.scss'],
 })
 export class CreateComponent {
-  private letterOnlyRegex = /^[a-zA-Z\s]+$/;
+  letterOnlyRegex = /^[a-zA-Z\s]+$/;
 
   fieldIsRequired = 'Field is required';
   onlyLettersAllowed = 'Only letters allowed';
@@ -28,10 +38,7 @@ export class CreateComponent {
     ]),
     email: new FormControl('', [Validators.required, Validators.email]),
     streetName: new FormControl('', [Validators.required]),
-    houseNumber: new FormControl(null, [
-      Validators.required,
-      Validators.pattern(/^\d+$/),
-    ]),
+    houseNumber: new FormControl('', [Validators.required]),
     postalCode: new FormControl('', [
       Validators.required,
       Validators.pattern(/^\d{4} ?[A-Za-z]{2}$/),

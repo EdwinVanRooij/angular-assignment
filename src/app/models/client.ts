@@ -6,7 +6,7 @@ export interface Client {
   address: {
     streetName: string;
     postalCode: string;
-    houseNumber: number;
+    houseNumber: string;
     city: string;
   };
 }
