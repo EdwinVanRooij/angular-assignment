@@ -1,0 +1,6 @@
+# Configuration for prettier specific settings.
+trailingComma: 'es5'
+semi: true
+singleQuote: true
+printWidth: 120
+useTabs: true
