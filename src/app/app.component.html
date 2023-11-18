@@ -1,4 +1,4 @@
-<div class="outer-container">
+<div class="outer-container" #outerContainer>
   <mat-card>
     <mat-card-header>
       <mat-card-title>Clients</mat-card-title>
@@ -8,7 +8,7 @@
       <mat-divider></mat-divider>
     </mat-card-header>
     <mat-card-content>
-      <router-outlet></router-outlet>
+      <router-outlet #routerOutletId></router-outlet>
     </mat-card-content>
   </mat-card>
 </div>
