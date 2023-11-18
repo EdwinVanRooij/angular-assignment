@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, QueryList, ViewChildren } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { filter, Observable, Subscription } from 'rxjs';
@@ -14,8 +14,14 @@ import { ClientComponent } from '../client/client.component';
 	styleUrls: ['./overview.component.scss'],
 })
 export class OverviewComponent implements AfterViewInit, OnDestroy {
+	// We can query the template for all instances of ClientComponent that it can find.
+	// The QueryList has a `changes` observable that we can subscribe to.
 	@ViewChildren(ClientComponent)
-	clientComponents!: QueryList<ClientComponent>;
+	clientComponentsQueryList!: QueryList<ClientComponent>;
+
+	// Or query for the ElementRef of course.
+	@ViewChildren(ClientComponent, { read: ElementRef })
+	clientComponentReferencesQueryList!: QueryList<ClientComponent>;
 
 	client$: Observable<Client[]>;
 	selectedClient: Client | null = null;
@@ -31,11 +37,15 @@ export class OverviewComponent implements AfterViewInit, OnDestroy {
 	}
 
 	ngAfterViewInit(): void {
-		const clientSubscription = this.clientComponents.changes
+		const clientSubscription = this.clientComponentsQueryList.changes
 			.pipe(filter((change) => change!! && change.length > 0))
 			.subscribe(() => this.onClientComponentsRendered());
 
-		this.subscriptions.push(clientSubscription);
+		const clientRefsSubscription = this.clientComponentReferencesQueryList.changes
+			.pipe(filter((change) => change!! && change.length > 0))
+			.subscribe(() => this.onClientComponentRefsRendered());
+
+		this.subscriptions.push(clientSubscription, clientRefsSubscription);
 	}
 
 	ngOnDestroy(): void {
@@ -47,7 +57,14 @@ export class OverviewComponent implements AfterViewInit, OnDestroy {
 	onClientComponentsRendered(): void {
 		console.log(
 			`Found all ClientComponent elements by querying the template ` +
-				`using the component's type with the decorator @ViewChildren: ${this.clientComponents.length}`
+				`using the component's type with the decorator @ViewChildren: ${this.clientComponentsQueryList.length}`
+		);
+	}
+
+	onClientComponentRefsRendered(): void {
+		console.log(
+			`Found all ClientComponent element references by querying the template ` +
+				`using the component's type with the decorator @ViewChildren: ${this.clientComponentsQueryList.length}`
 		);
 	}
 
