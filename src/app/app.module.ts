@@ -17,19 +17,19 @@ import { NgxsModule } from '@ngxs/store';
 import { PersonsState } from './state/person/person.state';
 
 @NgModule({
-  declarations: [AppComponent, NotFoundComponent],
-  imports: [
-    BrowserModule,
-    MaterialModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    UtilitiesModule,
-    NgxsModule.forRoot([PersonsState]),
-    StoreModule.forRoot({ [StoreKeys.Client]: clientReducer }),
-    EffectsModule.forRoot([ClientEffects]),
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
+	declarations: [AppComponent, NotFoundComponent],
+	imports: [
+		BrowserModule,
+		MaterialModule,
+		AppRoutingModule,
+		BrowserAnimationsModule,
+		HttpClientModule,
+		UtilitiesModule,
+		NgxsModule.forRoot([PersonsState]),
+		StoreModule.forRoot({ [StoreKeys.Client]: clientReducer }),
+		EffectsModule.forRoot([ClientEffects]),
+	],
+	providers: [],
+	bootstrap: [AppComponent],
 })
 export class AppModule {}

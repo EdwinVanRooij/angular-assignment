@@ -65,8 +65,9 @@
     by giving it the same name as it was where it's being initiated. -->
 <ng-template #clients let-client$="client$">
   <div
-    *ngFor="let client of client$ | async; let isLastClient = last"
+    *ngFor="let client of client$ | async; let isLastClient = last; let isFirstClient = first"
     [ngClass]="{ selected: client === selectedClient }"
+    appHighlighted
   >
     <app-client (selectedClient)="onSelectClient($event)" [client]="client"></app-client>
     <mat-divider *ngIf="!isLastClient"></mat-divider>
