@@ -1,29 +1,57 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { StoreModule } from '@ngrx/store';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import { MaterialModule } from './shared/material/material.module';
+import { initializeClientStore } from './state/client/client.actions';
 
 describe('AppComponent', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-    imports: [RouterTestingModule],
-    declarations: [AppComponent]
-  }));
+  let store: MockStore;
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  const initialState = {};
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [RouterTestingModule, StoreModule.forRoot({}), MaterialModule],
+      declarations: [AppComponent],
+      providers: [provideMockStore({ initialState })],
+    }).compileComponents();
+
+    store = TestBed.inject(MockStore);
   });
 
-  it(`should have as title 'AngularAssignment'`, () => {
+  it('should dispatch initializeClientStore action on initialization', () => {
+    const dispatchSpy = jest.spyOn(store, 'dispatch');
+
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('AngularAssignment');
+    fixture.detectChanges();
+
+    expect(dispatchSpy).toHaveBeenCalledWith(initializeClientStore());
   });
 
-  it('should render title', () => {
+  it('should render the "Clients" title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('AngularAssignment app is running!');
+    expect(compiled.querySelector('mat-card-title')?.textContent).toContain(
+      'Clients'
+    );
+  });
+
+  it('should render the correct subtitle', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('mat-card-subtitle')?.textContent).toContain(
+      'Use this application to view and add clients.'
+    );
+  });
+
+  it('should have a router-outlet for child routes', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('router-outlet')).toBeTruthy();
   });
 });
