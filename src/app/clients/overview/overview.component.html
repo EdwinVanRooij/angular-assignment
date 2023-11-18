@@ -10,17 +10,12 @@
     </button>
 
     <ng-container *ngIf="!(isLoadingClients$ | async); else loadingSpinner">
-      <!-- start Clients -->
       <mat-list>
-        <div
-          *ngFor="let client of client$ | async; let last = last"
-          [ngClass]="{ selected: client === selectedClient }"
-        >
-          <app-client (selectedClient)="onSelectClient($event)" [client]="client"></app-client>
-          <mat-divider *ngIf="!last"></mat-divider>
-        </div>
+        <!-- Use the structural directive `ngTemplateOutlet` to render a template here directly, on an ng-container
+         so that no extra element is necessary. In the context, pass `client$` as a simplified key/value pair
+          so that the template can access it. -->
+        <ng-container *ngTemplateOutlet="clients; context: {client$}"></ng-container>
       </mat-list>
-      <!-- end Clients -->
     </ng-container>
   </mat-drawer>
 
@@ -34,8 +29,7 @@
       <hr #horizontalRuler>
 
       <span>Here may be some nonsense for testing purposes.</span>
-      <span #extraTextElements
-            class="extra-text-elements">This is an extra text element, also for testing purposes.</span>
+      <span #extraTextElements class="extra-text-elements">This is an extra text element.</span>
       <span #extraTextElements class="extra-text-elements">And another one.</span>
 
       <img *ngIf="client.imageUrl"
@@ -59,5 +53,17 @@
     [message]="'Select any client to view its details'"
   >
   </app-placeholder>
+</ng-template>
+
+<!-- Define a variable called `client$` by prefixing it with `let-` and accessing its value from the context
+    by giving it the same name as it was where it's being initiated. -->
+<ng-template #clients let-client$="client$">
+  <div
+    *ngFor="let client of client$ | async; let isLastClient = last"
+    [ngClass]="{ selected: client === selectedClient }"
+  >
+    <app-client (selectedClient)="onSelectClient($event)" [client]="client"></app-client>
+    <mat-divider *ngIf="!isLastClient"></mat-divider>
+  </div>
 </ng-template>
 <!-- end Templates -->
