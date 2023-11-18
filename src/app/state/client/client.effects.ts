@@ -7,20 +7,20 @@ import * as ClientActions from './client.actions';
 
 @Injectable()
 export class ClientEffects {
-  loadClient$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(ClientActions.initializeClientStore),
-      tap(() => this.store.dispatch(ClientActions.setLoadingClients(true))),
-      delay(2500),
-      mergeMap(() => this.clientService.getAll()),
-      map((clients) => ClientActions.setClients(clients)),
-      tap(() => this.store.dispatch(ClientActions.setLoadingClients(false)))
-    )
-  );
+	loadClient$ = createEffect(() =>
+		this.actions$.pipe(
+			ofType(ClientActions.initializeClientStore),
+			tap(() => this.store.dispatch(ClientActions.setLoadingClients(true))),
+			delay(500),
+			mergeMap(() => this.clientService.getAll()),
+			map((clients) => ClientActions.setClients(clients)),
+			tap(() => this.store.dispatch(ClientActions.setLoadingClients(false)))
+		)
+	);
 
-  constructor(
-    private actions$: Actions,
-    private clientService: ClientService,
-    private store: Store
-  ) {}
+	constructor(
+		private actions$: Actions,
+		private clientService: ClientService,
+		private store: Store
+	) {}
 }

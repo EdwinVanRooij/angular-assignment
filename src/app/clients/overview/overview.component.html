@@ -31,9 +31,12 @@
     >
       <!-- Define some content here, that can be used within the AppDetailsComponent.
        This is called 'Content Projection'. -->
-      <hr>
+      <hr #horizontalRuler>
 
       <span>Here may be some nonsense for testing purposes.</span>
+      <span #extraTextElements
+            class="extra-text-elements">This is an extra text element, also for testing purposes.</span>
+      <span #extraTextElements class="extra-text-elements">And another one.</span>
 
       <img *ngIf="client.imageUrl"
            [src]="client.imageUrl"
