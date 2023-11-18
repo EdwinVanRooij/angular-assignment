@@ -1,5 +1,12 @@
 @import "src/styles/_variables.scss";
 
+.responsive-img {
+  max-width: 100%; /* Maximum width of 100% of its container */
+  height: auto; /* Height is set to auto to maintain aspect ratio */
+  display: block; /* Optional: ensures the image is a block-level element */
+  margin: 10px auto; /* Optional: centers the image if container is wider */
+}
+
 mat-drawer-container {
   width: 100%;
   height: 100%;
@@ -10,6 +17,9 @@ mat-drawer-container {
 
   mat-drawer-content {
     padding: $standardMaterialElementDistance;
+
+    app-details {
+    }
   }
 
   mat-list-item:hover {

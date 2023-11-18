@@ -2,7 +2,7 @@
   <mat-card-header>
     <mat-icon mat-card-avatar>person</mat-icon>
     <mat-card-title
-      >{{ client.firstName }} {{ client.lastName }}</mat-card-title
+    >{{ client.firstName }} {{ client.lastName }}</mat-card-title
     >
     <mat-card-subtitle>{{ client.email }}</mat-card-subtitle>
   </mat-card-header>
@@ -26,5 +26,21 @@
         <div mat-line>Email: {{ client.email }}</div>
       </mat-list-item>
     </mat-list>
+
+    <!-- Select content, that may or may not have been defined in the parent component that initialized this one.
+     This is called 'Content Projection'. -->
+
+    <!-- You can select content by CSS selectors. -->
+    <ng-content select="hr"></ng-content>
+
+    <ng-container *ngIf="client.imageUrl">
+      <span>An image should pop up below.</span>
+    </ng-container>
+
+    <!-- Select by css class. -->
+    <ng-content select=".responsive-img"></ng-content>
+
+    <!-- And select whatever is not selected specifically, but is in the content. -->
+    <ng-content></ng-content>
   </mat-card-content>
 </mat-card>

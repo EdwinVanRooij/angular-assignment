@@ -4,6 +4,7 @@
     "firstName": "John",
     "lastName": "Doe",
     "email": "john.doe@example.com",
+    "imageUrl": "https://cataas.com/cat/says/hello",
     "address": {
       "streetName": "Maple Street",
       "postalCode": "1234 AB",
@@ -27,6 +28,7 @@
     "id": 3,
     "firstName": "Alice",
     "lastName": "Johnson",
+    "imageUrl": "https://cataas.com/cat/says/bye",
     "email": "alice.johnson@example.com",
     "address": {
       "streetName": "Oak Avenue",
@@ -40,6 +42,7 @@
     "firstName": "Bob",
     "lastName": "Smith",
     "email": "bob.smith@example.com",
+    "imageUrl": "https://cataas.com/cat/says/greetings",
     "address": {
       "streetName": "Pine Lane",
       "postalCode": "2233 GH",

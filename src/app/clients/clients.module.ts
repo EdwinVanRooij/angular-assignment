@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { DetailsComponent } from './details/details.component';
 import { OverviewComponent } from './overview/overview.component';
 import { CreateComponent } from './create/create.component';
@@ -8,7 +8,7 @@ import { UtilitiesModule } from '../shared/utilities/utilities.module';
 import { ClientComponent } from './client/client.component';
 
 @NgModule({
-  declarations: [DetailsComponent, OverviewComponent, CreateComponent, ClientComponent],
-  imports: [CommonModule, MaterialModule, UtilitiesModule],
+	declarations: [DetailsComponent, OverviewComponent, CreateComponent, ClientComponent],
+	imports: [CommonModule, MaterialModule, UtilitiesModule, NgOptimizedImage],
 })
 export class ClientsModule {}
