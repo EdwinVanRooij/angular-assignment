@@ -1,10 +1,10 @@
 <mat-drawer-container>
-  <mat-drawer mode="side" opened disableClose="true">
+  <mat-drawer disableClose="true" mode="side" opened>
     <button
-      class="create-button floating-button"
-      mat-fab
-      color="primary"
       (click)="onClickPlus()"
+      class="create-button floating-button"
+      color="primary"
+      mat-fab
     >
       <mat-icon>add</mat-icon>
     </button>
@@ -26,9 +26,23 @@
 
   <mat-drawer-content>
     <app-details
-      *ngIf="selectedClient; else placeholderTemplate"
-      [client]="selectedClient"
-    ></app-details>
+      *ngIf="selectedClient as client; else placeholderTemplate"
+      [client]="client"
+    >
+      <!-- Define some content here, that can be used within the AppDetailsComponent.
+       This is called 'Content Projection'. -->
+      <hr #horizontalRuler>
+
+      <span>Here may be some nonsense for testing purposes.</span>
+      <span #extraTextElements
+            class="extra-text-elements">This is an extra text element, also for testing purposes.</span>
+      <span #extraTextElements class="extra-text-elements">And another one.</span>
+
+      <img *ngIf="client.imageUrl"
+           [src]="client.imageUrl"
+           alt="Client Image"
+           class="responsive-img">
+    </app-details>
   </mat-drawer-content>
 </mat-drawer-container>
 
@@ -41,8 +55,8 @@
 
 <ng-template #placeholderTemplate>
   <app-placeholder
-    [message]="'Select any client to view its details'"
     [iconKey]="'person'"
+    [message]="'Select any client to view its details'"
   >
   </app-placeholder>
 </ng-template>
