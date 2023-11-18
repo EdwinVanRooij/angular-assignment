@@ -33,7 +33,7 @@
     <!-- You can select content by CSS selectors. -->
     <ng-content select="hr"></ng-content>
 
-    <ng-container *ngIf="client.imageUrl">
+    <ng-container *ngIf="client.imageUrl; else noImageTemplate">
       <span>An image should pop up below.</span>
     </ng-container>
 

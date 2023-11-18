@@ -6,6 +6,7 @@ import {
 	ElementRef,
 	Input,
 	QueryList,
+	TemplateRef,
 } from '@angular/core';
 import { Client } from 'src/app/models/client';
 
@@ -16,6 +17,9 @@ import { Client } from 'src/app/models/client';
 })
 export class DetailsComponent implements AfterContentInit {
 	@Input({ required: true }) client!: Client;
+
+	@Input()
+	noImageTemplate!: TemplateRef<any>;
 
 	// Select an <hr> element by ContentChild instead of ViewChild, because it's inserted using content projection.
 	// Note that just like in `app.component.ts`, you can select a specific Angular component type as well.
