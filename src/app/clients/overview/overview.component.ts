@@ -78,4 +78,8 @@ export class OverviewComponent implements AfterViewInit, OnDestroy {
 			minWidth: '800px',
 		});
 	}
+
+	onToggleHighlight(highlightFeatureEnabled: boolean, client: Client) {
+		console.log(`The toggle highlight feature is currently ${highlightFeatureEnabled} for ${client.firstName}`);
+	}
 }
