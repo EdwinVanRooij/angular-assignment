@@ -20,6 +20,12 @@
   </mat-drawer>
 
   <mat-drawer-content>
+    <!--      *appNgxUnless-->
+    <app-placeholder
+      [iconKey]="'person'"
+      [message]="'Select any client to view its details'"
+    >
+    </app-placeholder>
     <app-details
       *ngIf="selectedClient as client; else placeholderTemplate"
       [client]="client"
