@@ -2,12 +2,14 @@ import { Directive, EventEmitter, HostBinding, HostListener, Input, Output } fro
 
 @Directive({
 	selector: '[appHighlighted]',
+	exportAs: 'hl',
 })
 export class HighlightedDirective {
+	// If no input is provided, an empty string is passed by default.
 	@Input('appHighlighted')
-	isHighlighted = false;
+	isHighlighted: boolean | '' = false;
 
-	featureIsEnabled = true;
+	featureIsEnabled: boolean = true;
 
 	// Declaring an output event emitter on a directive, applies that output as a new output as if it was placed on
 	// the element itself.
@@ -43,7 +45,7 @@ export class HighlightedDirective {
 	}
 
 	@HostListener('click')
-	click() {
+	toggleFeature() {
 		this.featureIsEnabled = !this.featureIsEnabled;
 		console.log(`Toggling the feature to ${this.featureIsEnabled}`);
 		this.toggleHighlightFunctionality.emit(this.featureIsEnabled);
