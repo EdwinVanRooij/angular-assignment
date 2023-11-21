@@ -20,14 +20,8 @@
   </mat-drawer>
 
   <mat-drawer-content>
-    <!--      *appNgxUnless-->
-    <app-placeholder
-      [iconKey]="'person'"
-      [message]="'Select any client to view its details'"
-    >
-    </app-placeholder>
     <app-details
-      *ngIf="selectedClient as client; else placeholderTemplate"
+      *ngIf="selectedClient as client"
       [client]="client"
       [noImageTemplate]="noImage"
     >
@@ -44,6 +38,15 @@
            alt="Client Image"
            class="responsive-img">
     </app-details>
+
+    <!-- Note: the structural directive below is just for demonstration purposes. Usually, you would combine the
+    'else' in the `ngIf` by using `; else <template>`. -->
+    <app-placeholder
+      *ngxUnless="!!selectedClient"
+      [iconKey]="'person'"
+      [message]="'Select any client to view its details'"
+    >
+    </app-placeholder>
   </mat-drawer-content>
 </mat-drawer-container>
 
