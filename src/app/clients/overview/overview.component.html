@@ -29,9 +29,9 @@
        This is called 'Content Projection'. -->
       <hr #horizontalRuler>
 
-      <span>Here may be some nonsense for testing purposes.</span>
-      <span #extraTextElements class="extra-text-elements">This is an extra text element.</span>
-      <span #extraTextElements class="extra-text-elements">And another one.</span>
+      <span>Here may be some nonsense for testing purposes. </span>
+      <span #extraTextElements class="extra-text-elements">This is an extra text element. </span>
+      <span #extraTextElements class="extra-text-elements">And another one. </span>
 
       <img *ngIf="client.imageUrl"
            [src]="client.imageUrl"
@@ -77,7 +77,7 @@
     #highlighter="hl"
     (dblclick)="highlighter.toggleFeature()"
     (toggleHighlightFunctionality)="onToggleHighlight($event, client)"
-    *ngFor="let client of client$ | async; let isLastClient = last; let isFirstClient = first"
+    *ngFor="let client of client$ | async; let isLastClient = last"
     [ngClass]="{ selected: client === selectedClient }" appHighlighted
   >
     <!--    [appHighlighted]="isLastClient"-->

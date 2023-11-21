@@ -1,0 +1,10 @@
+// By using this Angular-specific `:host` selector, it selects this specific component as a whole.
+// It does not apply to anything further within this component, just the root.
+:host {
+  padding: 20px;
+}
+
+// After that, you can just use css selectors like normally.
+:host.some-class {
+  padding: 100px;
+}
