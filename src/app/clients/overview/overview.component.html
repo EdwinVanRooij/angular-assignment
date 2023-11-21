@@ -21,7 +21,7 @@
 
   <mat-drawer-content>
     <app-details
-      *ngIf="selectedClient as client; else placeholderTemplate"
+      *ngIf="selectedClient as client"
       [client]="client"
       [noImageTemplate]="noImage"
     >
@@ -38,6 +38,15 @@
            alt="Client Image"
            class="responsive-img">
     </app-details>
+
+    <!-- Note: the structural directive below is just for demonstration purposes. Usually, you would combine the
+    'else' in the `ngIf` by using `; else <template>`. -->
+    <app-placeholder
+      *ngxUnless="!!selectedClient"
+      [iconKey]="'person'"
+      [message]="'Select any client to view its details'"
+    >
+    </app-placeholder>
   </mat-drawer-content>
 </mat-drawer-container>
 
@@ -65,9 +74,13 @@
     by giving it the same name as it was where it's being initiated. -->
 <ng-template #clients let-client$="client$">
   <div
-    *ngFor="let client of client$ | async; let isLastClient = last"
-    [ngClass]="{ selected: client === selectedClient }"
+    #highlighter="hl"
+    (dblclick)="highlighter.toggleFeature()"
+    (toggleHighlightFunctionality)="onToggleHighlight($event, client)"
+    *ngFor="let client of client$ | async; let isLastClient = last; let isFirstClient = first"
+    [ngClass]="{ selected: client === selectedClient }" appHighlighted
   >
+    <!--    [appHighlighted]="isLastClient"-->
     <app-client (selectedClient)="onSelectClient($event)" [client]="client"></app-client>
     <mat-divider *ngIf="!isLastClient"></mat-divider>
   </div>

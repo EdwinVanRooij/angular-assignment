@@ -1,9 +1,11 @@
-<div class="outer-container" #outerContainer>
+<div #outerContainer class="outer-container">
   <mat-card>
     <mat-card-header>
       <mat-card-title>Clients</mat-card-title>
       <mat-card-subtitle>
+        <span [appHighlighted]="true">
         Use this application to view and add clients.
+        </span>
       </mat-card-subtitle>
       <mat-divider></mat-divider>
     </mat-card-header>
