@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { initializeClientStore } from './state/client/client.actions';
 import { MatCardSubtitle, MatCardTitle } from '@angular/material/card';
 import { RouterOutlet } from '@angular/router';
+import { CUSTOM_CONFIG_TOKEN, CustomConfig } from './utilities/custom-config';
 
 @Component({
 	selector: 'app-root',
@@ -35,7 +36,13 @@ export class AppComponent implements OnInit, AfterViewInit {
 	@ViewChild('outerContainer')
 	outerContainer!: ElementRef;
 
-	constructor(private store: Store) {}
+	constructor(
+		private store: Store,
+		@Inject(CUSTOM_CONFIG_TOKEN) customConfig: CustomConfig
+	) {
+		console.log(`Custom config found:`);
+		console.log(customConfig);
+	}
 
 	ngOnInit(): void {
 		this.store.dispatch(initializeClientStore());

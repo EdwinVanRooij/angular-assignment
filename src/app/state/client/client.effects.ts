@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { delay, map, mergeMap, tap } from 'rxjs';
 import { ClientService } from 'src/app/services/client.service';
 import * as ClientActions from './client.actions';
-import { CLIENT_SERVICE } from '../../utilities/client-service-provider';
+import { CLIENT_SERVICE_INJECTION_TOKEN } from '../../utilities/client-service-provider';
 
 @Injectable()
 export class ClientEffects {
@@ -21,7 +21,7 @@ export class ClientEffects {
 
 	constructor(
 		private actions$: Actions,
-		@Inject(CLIENT_SERVICE) private clientService: ClientService,
+		@Inject(CLIENT_SERVICE_INJECTION_TOKEN) private clientService: ClientService,
 		private store: Store
 	) {}
 }

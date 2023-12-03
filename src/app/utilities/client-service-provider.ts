@@ -4,7 +4,7 @@ import {InjectionToken} from '@angular/core'; // These functions demonstrate how
 
 // These functions demonstrate how you can create your custom
 // dependency injection provider.
-export const CLIENT_SERVICE = new InjectionToken<ClientService>('CLIENT_SERVICE');
+export const CLIENT_SERVICE_INJECTION_TOKEN = new InjectionToken<ClientService>('CLIENT_SERVICE');
 
 export function clientServiceProvider(httpClient: HttpClient) {
 	return new ClientService(httpClient);

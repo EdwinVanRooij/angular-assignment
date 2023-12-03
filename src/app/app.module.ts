@@ -15,7 +15,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { UtilitiesModule } from './shared/utilities/utilities.module';
 import { NgxsModule } from '@ngxs/store';
 import { PersonsState } from './state/person/person.state';
-import { CLIENT_SERVICE, clientServiceProvider } from './utilities/client-service-provider';
+import { CLIENT_SERVICE_INJECTION_TOKEN, clientServiceProvider } from './utilities/client-service-provider';
 
 @NgModule({
 	declarations: [AppComponent, NotFoundComponent],
@@ -31,7 +31,7 @@ import { CLIENT_SERVICE, clientServiceProvider } from './utilities/client-servic
 		EffectsModule.forRoot([ClientEffects]),
 	],
 	// In the providers, you can implement your own custom dependency injection provider.
-	providers: [{ provide: CLIENT_SERVICE, useFactory: clientServiceProvider, deps: [HttpClient] }],
+	providers: [{ provide: CLIENT_SERVICE_INJECTION_TOKEN, useFactory: clientServiceProvider, deps: [HttpClient] }],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
