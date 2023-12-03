@@ -11,10 +11,11 @@ import { clientReducer } from './state/client/client.reducers';
 import { ClientEffects } from './state/client/client.effects';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MaterialModule } from './shared/material/material.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { UtilitiesModule } from './shared/utilities/utilities.module';
 import { NgxsModule } from '@ngxs/store';
 import { PersonsState } from './state/person/person.state';
+import { CLIENT_SERVICE, clientServiceProvider } from './utilities/client-service-provider';
 
 @NgModule({
 	declarations: [AppComponent, NotFoundComponent],
@@ -29,7 +30,8 @@ import { PersonsState } from './state/person/person.state';
 		StoreModule.forRoot({ [StoreKeys.Client]: clientReducer }),
 		EffectsModule.forRoot([ClientEffects]),
 	],
-	providers: [],
+	// In the providers, you can implement your own custom dependency injection provider.
+	providers: [{ provide: CLIENT_SERVICE, useFactory: clientServiceProvider, deps: [HttpClient] }],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
