@@ -1,4 +1,18 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, QueryList, ViewChildren } from '@angular/core';
+import {
+	AfterContentChecked,
+	AfterContentInit,
+	AfterViewChecked,
+	AfterViewInit,
+	Component,
+	DoCheck,
+	ElementRef,
+	OnChanges,
+	OnDestroy,
+	OnInit,
+	QueryList,
+	SimpleChanges,
+	ViewChildren,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { filter, Observable, Subscription } from 'rxjs';
@@ -13,7 +27,17 @@ import { ClientComponent } from '../client/client.component';
 	templateUrl: './overview.component.html',
 	styleUrls: ['./overview.component.scss'],
 })
-export class OverviewComponent implements AfterViewInit, OnDestroy {
+export class OverviewComponent
+	implements
+		OnChanges,
+		OnInit,
+		DoCheck,
+		AfterContentInit,
+		AfterViewInit,
+		AfterContentChecked,
+		AfterViewChecked,
+		OnDestroy
+{
 	// We can query the template for all instances of ClientComponent that it can find.
 	// The QueryList has a `changes` observable that we can subscribe to.
 	@ViewChildren(ClientComponent)
@@ -28,15 +52,41 @@ export class OverviewComponent implements AfterViewInit, OnDestroy {
 	isLoadingClients$: Observable<boolean>;
 	subscriptions: Subscription[] = [];
 
+	private loggedFirstMethodCallDictionary: any = {};
+
 	constructor(
 		private store: Store<ClientState>,
 		private dialog: MatDialog
 	) {
+		console.log(`1: the constructor was called`);
 		this.isLoadingClients$ = this.store.select(isLoadingClients).pipe();
 		this.client$ = this.store.select(selectClients);
 	}
 
+	ngOnChanges(changes: SimpleChanges): void {
+		this.logFirstMethodCall('ngOnChanges', 2);
+	}
+
+	ngOnInit(): void {
+		this.logFirstMethodCall('ngOnInit', 3);
+	}
+
+	ngDoCheck(): void {
+		this.logFirstMethodCall('ngDoCheck', 4);
+	}
+
+	ngAfterContentInit(): void {
+		this.logFirstMethodCall('ngAfterContentInit', 5);
+	}
+
+	ngAfterContentChecked(): void {
+		// Note to self: the `Content` part in `ngAfterContentChecked` means Angular content projection.
+		this.logFirstMethodCall('ngAfterContentChecked', 6);
+	}
+
 	ngAfterViewInit(): void {
+		this.logFirstMethodCall('ngAfterViewInit', 7);
+
 		const clientSubscription = this.clientComponentsQueryList.changes
 			.pipe(filter((change) => change!! && change.length > 0))
 			.subscribe(() => this.onClientComponentsRendered());
@@ -48,7 +98,12 @@ export class OverviewComponent implements AfterViewInit, OnDestroy {
 		this.subscriptions.push(clientSubscription, clientRefsSubscription);
 	}
 
+	ngAfterViewChecked(): void {
+		this.logFirstMethodCall('ngAfterViewChecked', 8);
+	}
+
 	ngOnDestroy(): void {
+		this.logFirstMethodCall('ngOnDestroy', 9);
 		for (const subscription of this.subscriptions) {
 			subscription.unsubscribe();
 		}
@@ -81,5 +136,12 @@ export class OverviewComponent implements AfterViewInit, OnDestroy {
 
 	onToggleHighlight(highlightFeatureEnabled: boolean, client: Client) {
 		console.log(`The toggle highlight feature is currently ${highlightFeatureEnabled} for ${client.firstName}`);
+	}
+
+	private logFirstMethodCall(methodName: string, orderNumber: number) {
+		if (!this.loggedFirstMethodCallDictionary[methodName]) {
+			console.log(`${orderNumber}: ${methodName} was called`);
+			this.loggedFirstMethodCallDictionary[methodName] = true;
+		}
 	}
 }
