@@ -10,6 +10,7 @@ export const CUSTOM_CONFIG: CustomConfig = {
 	cacheDurationInSeconds: 300,
 };
 
+// Example of defining a global singleton
 export const CUSTOM_CONFIG_TOKEN = new InjectionToken<CustomConfig>('CUSTOM_CONFIG_TOKEN', {
 	providedIn: 'root',
 	factory: () => CUSTOM_CONFIG,
