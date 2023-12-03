@@ -64,28 +64,28 @@ export class OverviewComponent
 	}
 
 	ngOnChanges(changes: SimpleChanges): void {
-		this.logFirstMethodCall('ngOnChanges', 2);
+		this.logFirstMethodCall(2, 'ngOnChanges');
 	}
 
 	ngOnInit(): void {
-		this.logFirstMethodCall('ngOnInit', 3);
+		this.logFirstMethodCall(3, 'ngOnInit');
 	}
 
 	ngDoCheck(): void {
-		this.logFirstMethodCall('ngDoCheck', 4);
+		this.logFirstMethodCall(4, 'ngDoCheck');
 	}
 
 	ngAfterContentInit(): void {
-		this.logFirstMethodCall('ngAfterContentInit', 5);
+		this.logFirstMethodCall(5, 'ngAfterContentInit');
 	}
 
 	ngAfterContentChecked(): void {
 		// Note to self: the `Content` part in `ngAfterContentChecked` means Angular content projection.
-		this.logFirstMethodCall('ngAfterContentChecked', 6);
+		this.logFirstMethodCall(6, 'ngAfterContentChecked');
 	}
 
 	ngAfterViewInit(): void {
-		this.logFirstMethodCall('ngAfterViewInit', 7);
+		this.logFirstMethodCall(7, 'ngAfterViewInit');
 
 		const clientSubscription = this.clientComponentsQueryList.changes
 			.pipe(filter((change) => change!! && change.length > 0))
@@ -99,11 +99,11 @@ export class OverviewComponent
 	}
 
 	ngAfterViewChecked(): void {
-		this.logFirstMethodCall('ngAfterViewChecked', 8);
+		this.logFirstMethodCall(8, 'ngAfterViewChecked');
 	}
 
 	ngOnDestroy(): void {
-		this.logFirstMethodCall('ngOnDestroy', 9);
+		this.logFirstMethodCall(9, 'ngOnDestroy');
 		for (const subscription of this.subscriptions) {
 			subscription.unsubscribe();
 		}
@@ -138,7 +138,7 @@ export class OverviewComponent
 		console.log(`The toggle highlight feature is currently ${highlightFeatureEnabled} for ${client.firstName}`);
 	}
 
-	private logFirstMethodCall(methodName: string, orderNumber: number) {
+	private logFirstMethodCall(orderNumber: number, methodName: string) {
 		if (!this.loggedFirstMethodCallDictionary[methodName]) {
 			console.log(`${orderNumber}: ${methodName} was called`);
 			this.loggedFirstMethodCallDictionary[methodName] = true;
